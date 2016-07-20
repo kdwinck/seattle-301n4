@@ -34,6 +34,7 @@ Article.prototype.toHtml = function() {
   $newArticle.append('<hr>')
 
   // TODO: This cloned article is no longer a template, so we should remove that class...
+  $newArticle.removeClass('template');
 
   return $newArticle;
 }
@@ -46,10 +47,6 @@ rawData.forEach(function(ele) {
   articles.push(new Article(ele));
 })
 
-// articles.forEach(function(a){
-//   $('#articles').append(a.toHtml())
-// });
-console.log(articles[0]);
-
-$('#articles').append(articles[0].toHtml());
-// articles[0].tohtml();
+articles.forEach(function(a){
+  $('#articles').append(a.toHtml())
+});
