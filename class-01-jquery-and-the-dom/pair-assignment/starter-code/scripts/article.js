@@ -6,7 +6,7 @@ function Article (opts) {
   this.title = opts.title;
   this.category = opts.category;
   this.author = opts.author;
-  this.authorURL = opts.authorURL;
+  this.authorUrl = opts.authorUrl;
   this.publishedOn = opts.publishedOn;
   this.body = opts.body;
 }
@@ -20,6 +20,10 @@ Article.prototype.toHtml = function() {
   // from this particular Article instance. We need to fill in:
   // the author name and url, the article title and body, and the
   // publication date.
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('a').text(this.author);
+  $newArticle.find('a').attr('href', this.authorUrl);
+  $newArticle.find('.article-body').text(this.body);
 
   // Include the publication date as a 'title' attribute to show on hover:
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn)
@@ -45,5 +49,7 @@ rawData.forEach(function(ele) {
 // articles.forEach(function(a){
 //   $('#articles').append(a.toHtml())
 // });
-var $h1 = $('article h1').text();
-console.log($h1);
+console.log(articles[0]);
+
+$('#articles').append(articles[0].toHtml());
+// articles[0].tohtml();
