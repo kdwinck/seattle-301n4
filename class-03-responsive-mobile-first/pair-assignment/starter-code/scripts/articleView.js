@@ -44,7 +44,7 @@ articleView.handleCategoryFilter = function() {
 };
 
 articleView.handleMainNav = function() {
-  $('.main-nav').on('click', '.tab', function(e) {
+  $('.main-nav').on('click', '.tab', function() {
     $('.tab-content').hide();
     $('#' + $(this).data('content')).fadeIn();
   });
@@ -55,6 +55,9 @@ articleView.handleMainNav = function() {
 articleView.toggleNavDisplay = function() {
   //TODO: once you've added your hamburger menu icon, add an event handler to hide/show
   //the nav menu when the icon is clicked
+  $('.main-nav').on('click', '.icon-menu', function() {
+    $(this).siblings().toggle(1000);
+  });
 };
 
 articleView.setTeasers = function() {
@@ -74,4 +77,4 @@ $(document).ready(function() {
   articleView.handleMainNav();
   articleView.toggleNavDisplay();
   articleView.setTeasers();
-})
+});
