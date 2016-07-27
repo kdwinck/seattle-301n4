@@ -9,6 +9,7 @@ body {
 }
 
 hr {
+  clear: both;
   margin: 1em;
   width: 80%;
 }
