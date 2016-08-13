@@ -25,7 +25,7 @@
     });
   };
 
-
+  // popluate the states filter
   filters.populateStates = function() {
     webDB.execute(
       'SELECT DISTINCT state FROM zips ORDER BY state ASC',
@@ -38,9 +38,11 @@
       }
     );
 
+    // populate the cities filter when states filter is changed
     filters.populateCities = function() {
       $('#state-select').on('change', function() {
         var $state = $(this).val();
+        console.log($state);
         $('#city-select option:first-child').siblings().remove();
         webDB.execute(
           'SELECT DISTINCT city FROM zips WHERE state = "' + $state + '" ORDER BY city ASC',
