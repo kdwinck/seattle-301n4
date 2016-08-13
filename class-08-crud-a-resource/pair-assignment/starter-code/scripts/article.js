@@ -23,6 +23,7 @@
   Article.createTable = function(callback) {
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS articles(' + // what SQL command do we run here inside these quotes?
+        'id INTEGER PRIMARY KEY ASC,' +
         'title VARCHAR(255) NOT NULL,' +
         'category VARCHAR(255) NOT NULL,' +
         'author VARCHAR(255) NOT NULL,' +
@@ -39,7 +40,7 @@
   // TODO: Use correct SQL syntax to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
-      'DELETE * FROM articles;', // <----finish the command here, inside the quotes.
+      'DELETE FROM articles;', // <----finish the command here, inside the quotes.
       callback
     );
   };
@@ -64,7 +65,7 @@
       [
         {
           'sql': 'DELETE * FROM articles WHERE id = ?;',
-          'data': [id]
+          'data': [this.id],
         }
       ],
       callback
@@ -77,7 +78,7 @@
       [
         {
           'sql': 'UPDATE FROM articles SET (title, category, author, authorUrl, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?) WHERE id = ?;',
-          'data': [id, this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body, id]
+          'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body, this.id],
         }
       ],
       callback
