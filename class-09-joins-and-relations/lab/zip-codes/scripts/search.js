@@ -1,7 +1,31 @@
 (function(module) {
 
   var filters = {};
+
   // TODO: Write the code to populate your filters, and enable the search queries here in search.js
+  filters.filterByZip = function() {
+    $('form').submit(function(event) {
+      event.preventDefault();
+      // get the input value from the form
+      var $input = $('form :input').val();
+      if (isNaN($input)) {
+        alert('Please input a number.');
+      } else {
+        webDB.execute(
+          'SELECT * FROM zips WHERE zip = "' + $input + '"',
+          function(result) {
+            if(result.length > 0) {
+              initMap(result);
+            } else {
+              alert('There is no matching zipcode.');
+            }
+          }
+        );
+      }
+    });
+  };
+
+
   filters.populateStates = function() {
     webDB.execute(
       'SELECT DISTINCT state FROM zips ORDER BY state ASC',
@@ -40,7 +64,7 @@
         webDB.execute(
           'SELECT * FROM zips WHERE city = "' + $city + '" AND state = "' + $state + '"',
         function(result) {
-          console.log(result);
+          initMap(result);
         }
         );
       });
@@ -51,6 +75,7 @@
 
 })(window);
 
+filters.filterByZip();
 filters.populateStates();
 filters.populateCities();
 filters.dropPin();
