@@ -38,17 +38,17 @@
             webDB.execute(
               [
                 {
-                'sql': 'INSERT INTO zips(city, state, latitude, longitude, population, zip) VALUES(?, ?, ?, ?, ?, ?);',
-                'data': [ele.city, ele.state, ele.loc[1], ele.loc[0], ele.pop, ele.zip],
+                  'sql': 'INSERT INTO zips(city, state, latitude, longitude, population, zip) VALUES(?, ?, ?, ?, ?, ?);',
+                  'data': [ele.city, ele.state, ele.loc[1], ele.loc[0], ele.pop, ele.zip],
                 }
               ],
               function(results) {
-
-              })
-            })
-          })
+                console.log('Successfully got data from file');
+              });
+          });
+        });
       }
-    })
-  }
+    });
+  };
   module.zips = zips;
-})(window)
+})(window);
