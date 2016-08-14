@@ -64,7 +64,7 @@
     webDB.execute(
       [
         {
-          'sql': 'DELETE * FROM articles WHERE id = ?;',
+          'sql': 'DELETE FROM articles WHERE id = ?;',
           'data': [this.id],
         }
       ],
@@ -77,7 +77,7 @@
     webDB.execute(
       [
         {
-          'sql': 'UPDATE * FROM articles SET (title, category, author, authorUrl, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?) WHERE id = ?;',
+          'sql': 'UPDATE articles SET (title, category, author, authorUrl, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?) WHERE id = ?;',
           'data': [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.body, this.id],
         }
       ],
